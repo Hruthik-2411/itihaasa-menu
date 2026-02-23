@@ -16,9 +16,10 @@ const About = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1572231086568-6984943e6629"
-              alt="Bean Board Café Interior"
+              src="https://itihaasafoods.in/assets/images/2.jpg"
+              alt="ITHI HA ASA Foods Interior"
               className="about-img"
+              loading="lazy"
             />
           </motion.div>
           
