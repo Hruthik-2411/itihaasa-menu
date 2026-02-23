@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer-logo">
               <Coffee size={32} />
               <div>
-                <h3 className="heading-3">Bean Board</h3>
+                <h3 className="heading-3">ITHI HA ASA Foods</h3>
                 <p className="caption">బీన్ బోర్డు – సీతమ్మధార</p>
               </div>
             </div>
