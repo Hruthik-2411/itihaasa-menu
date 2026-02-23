@@ -25,7 +25,7 @@ const Header = () => {
     <header className={`header-nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-content">
         <div className="logo-section">
-          <h1 className="logo-text">Bean Board</h1>
+          <h1 className="logo-text">ITHI HA ASA Foods</h1>
           <span className="logo-telugu">బీన్ బోర్డు</span>
         </div>
 
