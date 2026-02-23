@@ -1,80 +1,12 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { menuCategories } from '../data/mockData';
 import './Menu.css';
 
-const MenuCategory = ({ category, hoveredCategory, setHoveredCategory }) => {
-  const isHovered = hoveredCategory === category.id;
-  
-  return (
-    <motion.div
-      className="menu-category-item"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      onMouseEnter={() => setHoveredCategory(category.id)}
-      onMouseLeave={() => setHoveredCategory(null)}
-    >
-      <motion.div
-        className={`category-trigger ${isHovered ? 'active' : ''}`}
-        whileHover={{ scale: 1.02 }}
-      >
-        <div className="category-image-small">
-          <img src={category.image} alt={category.name} loading="lazy" />
-        </div>
-        <div className="category-info">
-          <h3 className="heading-3">{category.name}</h3>
-          <p className="caption">{category.description}</p>
-        </div>
-        <ChevronDown 
-          className={`chevron-icon ${isHovered ? 'rotate' : ''}`} 
-          size={20} 
-        />
-      </motion.div>
-
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className="dropdown-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="menu-items-grid">
-              {category.items && category.items.slice(0, 20).map((item, idx) => (
-                <div key={idx} className="menu-item-dropdown">
-                  <div className="item-header">
-                    <h4 className="body-medium item-name">{item.name}</h4>
-                    <div className="item-prices">
-                      {item.priceSmall && (
-                        <span className="item-price small">S: {item.priceSmall}</span>
-                      )}
-                      {item.priceLarge && (
-                        <span className="item-price large">L: {item.priceLarge}</span>
-                      )}
-                      {item.price && (
-                        <span className="item-price">{item.price}</span>
-                      )}
-                    </div>
-                  </div>
-                  {item.description && (
-                    <p className="caption item-description">{item.description}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
-
 const Menu = () => {
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('coffee');
+
+  const activeMenu = menuCategories.find(cat => cat.id === activeCategory);
 
   return (
     <section id="menu" className="menu-section">
@@ -92,78 +24,64 @@ const Menu = () => {
           </p>
         </motion.div>
 
-        <div className="menu-categories-dropdown">
-          {menuCategories[0] && (
-            <MenuCategory 
-              category={menuCategories[0]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[1] && (
-            <MenuCategory 
-              category={menuCategories[1]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[2] && (
-            <MenuCategory 
-              category={menuCategories[2]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[3] && (
-            <MenuCategory 
-              category={menuCategories[3]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[4] && (
-            <MenuCategory 
-              category={menuCategories[4]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[5] && (
-            <MenuCategory 
-              category={menuCategories[5]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[6] && (
-            <MenuCategory 
-              category={menuCategories[6]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[7] && (
-            <MenuCategory 
-              category={menuCategories[7]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[8] && (
-            <MenuCategory 
-              category={menuCategories[8]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
-          {menuCategories[9] && (
-            <MenuCategory 
-              category={menuCategories[9]} 
-              hoveredCategory={hoveredCategory}
-              setHoveredCategory={setHoveredCategory}
-            />
-          )}
+        {/* Tab Navigation */}
+        <div className="menu-tabs">
+          <div className="tabs-scroll">
+            {menuCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`tab-button ${activeCategory === category.id ? 'active' : ''}`}
+              >
+                <span className="tab-icon">{category.icon}</span>
+                <span className="tab-name">{category.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Menu Content */}
+        <motion.div
+          key={activeCategory}
+          className="menu-content-grid"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="menu-category-header">
+            <h3 className="heading-2">{activeMenu.name}</h3>
+            <p className="body-medium">{activeMenu.description}</p>
+          </div>
+
+          <div className="menu-items-compact">
+            {activeMenu.items.map((item, index) => (
+              <motion.div
+                key={index}
+                className="menu-item-compact"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.02 }}
+              >
+                <div className="item-info">
+                  <h4 className="item-name-compact">{item.name}</h4>
+                  {item.description && (
+                    <p className="item-desc-compact">{item.description}</p>
+                  )}
+                </div>
+                <div className="item-pricing">
+                  {item.priceSmall && item.priceLarge ? (
+                    <>
+                      <span className="price-tag small">S {item.priceSmall}</span>
+                      <span className="price-tag large">L {item.priceLarge}</span>
+                    </>
+                  ) : (
+                    <span className="price-tag">{item.price}</span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         <motion.div 
           className="menu-cta"
@@ -173,17 +91,17 @@ const Menu = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.a 
-            href="https://www.swiggy.com" 
+            href="https://www.swiggy.com/dineout" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="btn-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Order on Swiggy
+            Reserve a Table
           </motion.a>
           <motion.a 
-            href="tel:07382638620" 
+            href="tel:+918977531113" 
             className="btn-secondary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
