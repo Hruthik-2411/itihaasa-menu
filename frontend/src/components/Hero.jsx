@@ -89,7 +89,7 @@ const Hero = () => {
           <div className="info-divider"></div>
           <div className="info-item">
             <span className="caption font-mono">LOCATION</span>
-            <p className="body-small">Seetammadhara, Vizag</p>
+            <p className="body-small">Vishalakshi Nagar, Vizag</p>
           </div>
         </motion.div>
       </div>
