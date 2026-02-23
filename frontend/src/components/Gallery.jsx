@@ -39,7 +39,7 @@ const Gallery = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
             >
-              <img src={image} alt={`Bean Board Gallery ${index + 1}`} />
+              <img src={image} alt={`ITHI HA ASA Foods Gallery ${index + 1}`} loading="lazy" />
               <div className="gallery-overlay">
                 <span className="caption font-mono">View</span>
               </div>
