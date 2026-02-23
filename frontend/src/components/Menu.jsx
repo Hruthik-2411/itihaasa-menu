@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { menuCategories } from '../data/mockData';
 import './Menu.css';
 
 const Menu = () => {
-  const [activeCategory, setActiveCategory] = useState('coffee');
-
-  const activeMenu = menuCategories.find(cat => cat.id === activeCategory);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   return (
     <section id="menu" className="menu-section">
@@ -24,92 +24,79 @@ const Menu = () => {
           </p>
         </motion.div>
 
-        <motion.div 
-          className="menu-categories"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <motion.button
-            onClick={() => setActiveCategory('coffee')}
-            className={`category-btn ${activeCategory === 'coffee' ? 'active' : ''}`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Coffee
-          </motion.button>
-          <motion.button
-            onClick={() => setActiveCategory('snacks')}
-            className={`category-btn ${activeCategory === 'snacks' ? 'active' : ''}`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Snacks
-          </motion.button>
-          <motion.button
-            onClick={() => setActiveCategory('desserts')}
-            className={`category-btn ${activeCategory === 'desserts' ? 'active' : ''}`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Desserts
-          </motion.button>
-          <motion.button
-            onClick={() => setActiveCategory('combos')}
-            className={`category-btn ${activeCategory === 'combos' ? 'active' : ''}`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Combos
-          </motion.button>
-        </motion.div>
+        <div className="menu-categories-dropdown">
+          {menuCategories.map((category, index) => (
+            <motion.div
+              key={category.id}
+              className="menu-category-item"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              onMouseEnter={() => setHoveredCategory(category.id)}
+              onMouseLeave={() => setHoveredCategory(null)}
+            >
+              <motion.div
+                className={`category-trigger ${hoveredCategory === category.id ? 'active' : ''}`}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="category-image-small">
+                  <img src={category.image} alt={category.name} loading="lazy" />
+                </div>
+                <div className="category-info">
+                  <h3 className="heading-3">{category.name}</h3>
+                  <p className="caption">{category.description}</p>
+                </div>
+                <ChevronDown 
+                  className={`chevron-icon ${hoveredCategory === category.id ? 'rotate' : ''}`} 
+                  size={20} 
+                />
+              </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={activeCategory}
-            className="menu-content"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-          >
-            <div className="menu-featured">
-              <img 
-                src={activeMenu.image} 
-                alt={activeMenu.name}
-                className="featured-image"
-              />
-              <div className="featured-overlay">
-                <h3 className="heading-2">{activeMenu.name}</h3>
-                <p className="body-medium">{activeMenu.description}</p>
-              </div>
-            </div>
-
-            <div className="menu-items">
-              {activeMenu.items && activeMenu.items.length > 0 && (
-                <>
-                  {activeMenu.items.slice(0, 6).map((item, index) => (
-                    <motion.div 
-                      key={index} 
-                      className="menu-item"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      whileHover={{ y: -4 }}
-                    >
-                      <div className="item-header">
-                        <h4 className="heading-3">{item.name}</h4>
-                        <span className="item-price font-mono">{item.price}</span>
-                      </div>
-                      <p className="body-small item-description">{item.description}</p>
-                    </motion.div>
-                  ))}
-                </>
-              )}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              <AnimatePresence>
+                {hoveredCategory === category.id && (
+                  <motion.div
+                    className="dropdown-menu"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="menu-items-grid">
+                      {category.items.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="menu-item-dropdown"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.03 }}
+                        >
+                          <div className="item-header">
+                            <h4 className="body-medium item-name">{item.name}</h4>
+                            <div className="item-prices">
+                              {item.priceSmall && (
+                                <span className="item-price small">S: {item.priceSmall}</span>
+                              )}
+                              {item.priceLarge && (
+                                <span className="item-price large">L: {item.priceLarge}</span>
+                              )}
+                              {item.price && (
+                                <span className="item-price">{item.price}</span>
+                              )}
+                            </div>
+                          </div>
+                          {item.description && (
+                            <p className="caption item-description">{item.description}</p>
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
 
         <motion.div 
           className="menu-cta"
