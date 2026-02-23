@@ -6,7 +6,7 @@ import './Menu.css';
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('coffee');
 
-  const activeMenu = menuCategories.find(cat => cat.id === activeCategory);
+  const activeMenu = menuCategories.find(cat => cat.id === activeCategory) || menuCategories[0];
 
   return (
     <section id="menu" className="menu-section">
@@ -27,16 +27,46 @@ const Menu = () => {
         {/* Tab Navigation */}
         <div className="menu-tabs">
           <div className="tabs-scroll">
-            {menuCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`tab-button ${activeCategory === category.id ? 'active' : ''}`}
-              >
-                <span className="tab-icon">{category.icon}</span>
-                <span className="tab-name">{category.name}</span>
-              </button>
-            ))}
+            <button onClick={() => setActiveCategory('coffee')} className={`tab-button ${activeCategory === 'coffee' ? 'active' : ''}`}>
+              <span className="tab-icon">☕</span>
+              <span className="tab-name">Coffee Menu</span>
+            </button>
+            <button onClick={() => setActiveCategory('frappe')} className={`tab-button ${activeCategory === 'frappe' ? 'active' : ''}`}>
+              <span className="tab-icon">🥤</span>
+              <span className="tab-name">Cream Frappe</span>
+            </button>
+            <button onClick={() => setActiveCategory('cozy')} className={`tab-button ${activeCategory === 'cozy' ? 'active' : ''}`}>
+              <span className="tab-icon">☕</span>
+              <span className="tab-name">Cozy Sips</span>
+            </button>
+            <button onClick={() => setActiveCategory('icedtea')} className={`tab-button ${activeCategory === 'icedtea' ? 'active' : ''}`}>
+              <span className="tab-icon">🍹</span>
+              <span className="tab-name">Iced Teas</span>
+            </button>
+            <button onClick={() => setActiveCategory('hottea')} className={`tab-button ${activeCategory === 'hottea' ? 'active' : ''}`}>
+              <span className="tab-icon">🍵</span>
+              <span className="tab-name">Hot Teas</span>
+            </button>
+            <button onClick={() => setActiveCategory('sandwiches')} className={`tab-button ${activeCategory === 'sandwiches' ? 'active' : ''}`}>
+              <span className="tab-icon">🥪</span>
+              <span className="tab-name">Sandwiches</span>
+            </button>
+            <button onClick={() => setActiveCategory('rolls')} className={`tab-button ${activeCategory === 'rolls' ? 'active' : ''}`}>
+              <span className="tab-icon">🌯</span>
+              <span className="tab-name">Rolls & Fries</span>
+            </button>
+            <button onClick={() => setActiveCategory('pizza')} className={`tab-button ${activeCategory === 'pizza' ? 'active' : ''}`}>
+              <span className="tab-icon">🍕</span>
+              <span className="tab-name">Pizza & Burger</span>
+            </button>
+            <button onClick={() => setActiveCategory('pastries')} className={`tab-button ${activeCategory === 'pastries' ? 'active' : ''}`}>
+              <span className="tab-icon">🍰</span>
+              <span className="tab-name">Pastries & Cakes</span>
+            </button>
+            <button onClick={() => setActiveCategory('milkshakes')} className={`tab-button ${activeCategory === 'milkshakes' ? 'active' : ''}`}>
+              <span className="tab-icon">🥛</span>
+              <span className="tab-name">Shakes & Desserts</span>
+            </button>
           </div>
         </div>
 
@@ -54,14 +84,8 @@ const Menu = () => {
           </div>
 
           <div className="menu-items-compact">
-            {activeMenu.items.map((item, index) => (
-              <motion.div
-                key={index}
-                className="menu-item-compact"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.02 }}
-              >
+            {activeMenu.items && activeMenu.items.slice(0, 20).map((item, index) => (
+              <div key={index} className="menu-item-compact">
                 <div className="item-info">
                   <h4 className="item-name-compact">{item.name}</h4>
                   {item.description && (
@@ -78,7 +102,7 @@ const Menu = () => {
                     <span className="price-tag">{item.price}</span>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
