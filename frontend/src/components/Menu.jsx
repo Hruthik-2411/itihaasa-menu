@@ -4,8 +4,76 @@ import { ChevronDown } from 'lucide-react';
 import { menuCategories } from '../data/mockData';
 import './Menu.css';
 
+const MenuCategory = ({ category, hoveredCategory, setHoveredCategory }) => {
+  const isHovered = hoveredCategory === category.id;
+  
+  return (
+    <motion.div
+      className="menu-category-item"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      onMouseEnter={() => setHoveredCategory(category.id)}
+      onMouseLeave={() => setHoveredCategory(null)}
+    >
+      <motion.div
+        className={`category-trigger ${isHovered ? 'active' : ''}`}
+        whileHover={{ scale: 1.02 }}
+      >
+        <div className="category-image-small">
+          <img src={category.image} alt={category.name} loading="lazy" />
+        </div>
+        <div className="category-info">
+          <h3 className="heading-3">{category.name}</h3>
+          <p className="caption">{category.description}</p>
+        </div>
+        <ChevronDown 
+          className={`chevron-icon ${isHovered ? 'rotate' : ''}`} 
+          size={20} 
+        />
+      </motion.div>
+
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            className="dropdown-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="menu-items-grid">
+              {category.items && category.items.slice(0, 20).map((item, idx) => (
+                <div key={idx} className="menu-item-dropdown">
+                  <div className="item-header">
+                    <h4 className="body-medium item-name">{item.name}</h4>
+                    <div className="item-prices">
+                      {item.priceSmall && (
+                        <span className="item-price small">S: {item.priceSmall}</span>
+                      )}
+                      {item.priceLarge && (
+                        <span className="item-price large">L: {item.priceLarge}</span>
+                      )}
+                      {item.price && (
+                        <span className="item-price">{item.price}</span>
+                      )}
+                    </div>
+                  </div>
+                  {item.description && (
+                    <p className="caption item-description">{item.description}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 const Menu = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   return (
@@ -25,77 +93,76 @@ const Menu = () => {
         </motion.div>
 
         <div className="menu-categories-dropdown">
-          {menuCategories.map((category, index) => (
-            <motion.div
-              key={category.id}
-              className="menu-category-item"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              onMouseEnter={() => setHoveredCategory(category.id)}
-              onMouseLeave={() => setHoveredCategory(null)}
-            >
-              <motion.div
-                className={`category-trigger ${hoveredCategory === category.id ? 'active' : ''}`}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="category-image-small">
-                  <img src={category.image} alt={category.name} loading="lazy" />
-                </div>
-                <div className="category-info">
-                  <h3 className="heading-3">{category.name}</h3>
-                  <p className="caption">{category.description}</p>
-                </div>
-                <ChevronDown 
-                  className={`chevron-icon ${hoveredCategory === category.id ? 'rotate' : ''}`} 
-                  size={20} 
-                />
-              </motion.div>
-
-              <AnimatePresence>
-                {hoveredCategory === category.id && (
-                  <motion.div
-                    className="dropdown-menu"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="menu-items-grid">
-                      {category.items.map((item, idx) => (
-                        <motion.div
-                          key={idx}
-                          className="menu-item-dropdown"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.03 }}
-                        >
-                          <div className="item-header">
-                            <h4 className="body-medium item-name">{item.name}</h4>
-                            <div className="item-prices">
-                              {item.priceSmall && (
-                                <span className="item-price small">S: {item.priceSmall}</span>
-                              )}
-                              {item.priceLarge && (
-                                <span className="item-price large">L: {item.priceLarge}</span>
-                              )}
-                              {item.price && (
-                                <span className="item-price">{item.price}</span>
-                              )}
-                            </div>
-                          </div>
-                          {item.description && (
-                            <p className="caption item-description">{item.description}</p>
-                          )}
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+          {menuCategories[0] && (
+            <MenuCategory 
+              category={menuCategories[0]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[1] && (
+            <MenuCategory 
+              category={menuCategories[1]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[2] && (
+            <MenuCategory 
+              category={menuCategories[2]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[3] && (
+            <MenuCategory 
+              category={menuCategories[3]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[4] && (
+            <MenuCategory 
+              category={menuCategories[4]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[5] && (
+            <MenuCategory 
+              category={menuCategories[5]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[6] && (
+            <MenuCategory 
+              category={menuCategories[6]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[7] && (
+            <MenuCategory 
+              category={menuCategories[7]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[8] && (
+            <MenuCategory 
+              category={menuCategories[8]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
+          {menuCategories[9] && (
+            <MenuCategory 
+              category={menuCategories[9]} 
+              hoveredCategory={hoveredCategory}
+              setHoveredCategory={setHoveredCategory}
+            />
+          )}
         </div>
 
         <motion.div 
