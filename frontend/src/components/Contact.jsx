@@ -85,7 +85,7 @@ const Contact = () => {
 
           <div className="contact-map">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.3!2d83.3145!3d17.7397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDQ0JzIzLjAiTiA4M8KwMTgnNTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890"
+              src="https://www.google.com/maps/place/Bean+Board+-+Vishalakshi+Nagar+(ITI+HA+ASA_Foods)/@17.754057,83.349825,16z/data=!4m6!3m5!1s0x3a395b3a6dbc87dd:0x448b55d23a7289!8m2!3d17.7540568!4d83.3498245!16s%2Fg%2F11k411mcqm?hl=en&entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
               width="100%"
               height="100%"
               style={{ border: 0 }}

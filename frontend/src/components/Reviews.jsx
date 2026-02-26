@@ -56,7 +56,7 @@ const Reviews = () => {
 
         <div className="reviews-cta">
           <a 
-            href="https://www.google.com/maps/search/?api=1&query=Bean+Board+Seetammadhara"
+            href="https://www.google.com/maps/place/Bean+Board+-+Vishalakshi+Nagar+(ITI+HA+ASA_Foods)/@17.754057,83.349825,16z/data=!4m6!3m5!1s0x3a395b3a6dbc87dd:0x448b55d23a7289!8m2!3d17.7540568!4d83.3498245!16s%2Fg%2F11k411mcqm?hl=en&entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

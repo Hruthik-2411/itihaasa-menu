@@ -7,7 +7,7 @@ const Signature = () => {
     <section className="signature-section">
       <div className="container">
         <div className="signature-header">
-          <h2 className="heading-1">The Bean Board Experience</h2>
+          <h2 className="heading-1">The Bean And Brew Experience</h2>
           <p className="body-large signature-subtitle">
             From bean to cup, a journey of perfection
           </p>
