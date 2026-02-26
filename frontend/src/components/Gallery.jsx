@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import './Gallery.css';
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1598959652545-c0230cdbb01f",
-  "https://images.pexels.com/photos/1002740/pexels-photo-1002740.jpeg",
-  "https://images.pexels.com/photos/17607975/pexels-photo-17607975.jpeg",
-  "https://images.unsplash.com/photo-1744135459107-ec1f89781cf3",
-  "https://images.unsplash.com/photo-1757918391899-1341f7b285fb",
-  "https://images.unsplash.com/photo-1545418314-7ce0b9b53901"
+  "https://itihaasafoods.in/assets/images/r2.jpg",
+  "https://itihaasafoods.in/assets/images/2.jpg",
+  "https://itihaasafoods.in/assets/images/r3.jpg",
+  "https://itihaasafoods.in/assets/images/446.jpg",
+  "https://itihaasafoods.in/assets/images/NZ6_0598.jpg",
+  "https://itihaasafoods.in/assets/images/@Bean%20Board_Vishalakshi%20Nagar.jpeg"
 ];
 
 const Gallery = () => {
