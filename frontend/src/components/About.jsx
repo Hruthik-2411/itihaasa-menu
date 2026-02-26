@@ -10,25 +10,26 @@ const About = () => {
         <div className="about-content">
           <motion.div 
             className="about-image"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
           >
             <img 
               src="https://itihaasafoods.in/assets/images/2.jpg"
               alt="ITHI HA ASA Foods Interior"
               className="about-img"
               loading="lazy"
+              decoding="async"
             />
           </motion.div>
           
           <motion.div 
             className="about-text"
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="heading-1 about-title">{aboutContent.title}</h2>
             
@@ -56,4 +57,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default React.memo(About);

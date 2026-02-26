@@ -17,10 +17,10 @@ const Gallery = () => {
       <div className="container">
         <motion.div 
           className="gallery-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
         >
           <h2 className="heading-1">Gallery</h2>
           <p className="body-large">
@@ -33,13 +33,17 @@ const Gallery = () => {
             <motion.div 
               key={index}
               className={`gallery-item item-${index + 1}`}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <img src={image} alt={`ITHI HA ASA Foods Gallery ${index + 1}`} loading="lazy" />
+              <img 
+                src={image} 
+                alt={`ITHI HA ASA Foods Gallery ${index + 1}`} 
+                loading="lazy"
+                decoding="async"
+              />
               <div className="gallery-overlay">
                 <span className="caption font-mono">View</span>
               </div>
@@ -51,4 +55,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default React.memo(Gallery);

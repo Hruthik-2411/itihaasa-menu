@@ -3,6 +3,13 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './Hero.css';
 
+// Simplified animation variants for better performance
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: "easeOut" }
+};
+
 const Hero = () => {
   const scrollToMenu = () => {
     const menuSection = document.getElementById('menu');
@@ -21,9 +28,7 @@ const Hero = () => {
       <div className="hero-content container">
         <motion.div 
           className="hero-announcement"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          {...fadeIn}
         >
           <span className="caption font-mono">Rated 4.3 ⭐ • 1,123 Reviews</span>
         </motion.div>
@@ -32,16 +37,15 @@ const Hero = () => {
           className="heading-hero hero-title"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
           Where Every Cup<br />Tells a Story
         </motion.h1>
         
         <motion.p 
           className="body-large hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          {...fadeIn}
+          transition={{ ...fadeIn.transition, delay: 0.2 }}
         >
           Experience the perfect blend of quality coffee, cozy ambience, 
           and warm hospitality at Visakhapatnam's favorite food destination
@@ -49,33 +53,27 @@ const Hero = () => {
 
         <motion.div 
           className="hero-cta"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          {...fadeIn}
+          transition={{ ...fadeIn.transition, delay: 0.3 }}
         >
-          <motion.button 
+          <button 
             onClick={handleReserve} 
             className="btn-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             Reserve a Table
-          </motion.button>
-          <motion.button 
+          </button>
+          <button 
             onClick={scrollToMenu} 
             className="btn-secondary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             Explore Menu <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
-          </motion.button>
+          </button>
         </motion.div>
 
         <motion.div 
           className="hero-info"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          {...fadeIn}
+          transition={{ ...fadeIn.transition, delay: 0.4 }}
         >
           <div className="info-item">
             <span className="caption font-mono">HOURS</span>
@@ -99,4 +97,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default React.memo(Hero);

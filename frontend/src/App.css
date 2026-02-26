@@ -61,16 +61,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Performance Optimizations */
+/* Performance Optimizations - Only for images */
 img {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-* {
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .font-mono {

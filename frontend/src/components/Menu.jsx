@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { menuCategories } from '../data/mockData';
 import './Menu.css';
@@ -6,17 +6,20 @@ import './Menu.css';
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('coffee');
 
-  const activeMenu = menuCategories.find(cat => cat.id === activeCategory) || menuCategories[0];
+  const activeMenu = useMemo(
+    () => menuCategories.find(cat => cat.id === activeCategory) || menuCategories[0],
+    [activeCategory]
+  );
 
   return (
     <section id="menu" className="menu-section">
       <div className="container">
         <motion.div 
           className="menu-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
         >
           <h2 className="heading-1">Our Menu</h2>
           <p className="body-large menu-subtitle">
@@ -64,9 +67,9 @@ const Menu = () => {
         <motion.div
           key={activeCategory}
           className="menu-content-grid"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="menu-category-header">
             <h3 className="heading-2">{activeMenu.name}</h3>
@@ -101,31 +104,27 @@ const Menu = () => {
           className="menu-cta"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.a 
+          <a 
             href="https://www.swiggy.com/dineout" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="btn-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             Reserve a Table
-          </motion.a>
-          <motion.a 
+          </a>
+          <a 
             href="tel:+918977531113" 
             className="btn-secondary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             Call to Order
-          </motion.a>
+          </a>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Menu;
+export default React.memo(Menu);

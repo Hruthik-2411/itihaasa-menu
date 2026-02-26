@@ -21,7 +21,12 @@ const Signature = () => {
               </div>
               
               <div className="stage-image">
-                <img src={stage.image} alt={stage.title} />
+                <img 
+                  src={stage.image} 
+                  alt={stage.title} 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               
               <div className="stage-content">
@@ -37,4 +42,4 @@ const Signature = () => {
   );
 };
 
-export default Signature;
+export default React.memo(Signature);

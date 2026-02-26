@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Phone } from 'lucide-react';
 import './Header.css';
 
@@ -6,20 +6,28 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = useCallback((id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
   return (
     <header className={`header-nav ${scrolled ? 'scrolled' : ''}`}>
@@ -48,4 +56,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
