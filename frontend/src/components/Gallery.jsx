@@ -4,9 +4,9 @@ import './Gallery.css';
 
 const galleryImages = [
   "https://itihaasafoods.in/assets/images/r2.jpg",
-  "https://itihaasafoods.in/assets/images/@Bean%20Board_Vishalakshi%20Nagar.jpeg",
-  "https://itihaasafoods.in/assets/images/r3.jpg",
   "https://itihaasafoods.in/assets/images/446.jpg",
+  "https://itihaasafoods.in/assets/images/r3.jpg",
+  "https://itihaasafoods.in/assets/images/@Bean%20Board_Vishalakshi%20Nagar.jpeg",
   "https://itihaasafoods.in/assets/images/NZ6_0598.jpg",
   "https://itihaasafoods.in/assets/images/2.jpg"
 ];
