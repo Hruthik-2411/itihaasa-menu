@@ -84,16 +84,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-map">
-            <iframe
-              src="https://www.google.com/maps/place/Bean+Board+-+Vishalakshi+Nagar+(ITI+HA+ASA_Foods)/@17.754057,83.349825,16z/data=!4m6!3m5!1s0x3a395b3a6dbc87dd:0x448b55d23a7289!8m2!3d17.7540568!4d83.3498245!16s%2Fg%2F11k411mcqm?hl=en&entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="ITHI HA ASA Foods Location"
-            ></iframe>
+           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7599.600145128859!2d83.349825!3d17.754057000000003!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a395b3a6dbc87dd%3A0x448b55d23a7289!2sBean%20Board%20-%20Vishalakshi%20Nagar%20(ITI%20HA%20ASA_Foods)!5e0!3m2!1sen!2sin!4v1772118948213!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
