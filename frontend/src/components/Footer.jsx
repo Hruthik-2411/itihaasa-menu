@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer-logo">
               <Coffee size={32} />
               <div>
-                <h3 className="heading-3">ITHI HA ASA Foods</h3>
+                <h3 className="heading-3">ITI HA ASA Foods</h3>
               </div>
             </div>
             <p className="body-small footer-tagline">
@@ -43,10 +43,10 @@ const Footer = () => {
             <div className="footer-section">
               <h4 className="caption font-mono footer-title">CONNECT</h4>
               <div className="footer-social">
-                <a href="#" aria-label="Instagram" className="social-link">
+                <a href="https://www.instagram.com/beanboard_vishalakshinagar/" aria-label="Instagram" className="social-link">
                   <Instagram size={20} />
                 </a>
-                <a href="#" aria-label="Facebook" className="social-link">
+                <a href="https://www.facebook.com/people/Iti-HA-Asa-Foods/100088863293487/" aria-label="Facebook" className="social-link">
                   <Facebook size={20} />
                 </a>
                 <a href="mailto:hello@beanboard.com" aria-label="Email" className="social-link">
