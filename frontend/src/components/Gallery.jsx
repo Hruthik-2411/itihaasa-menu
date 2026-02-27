@@ -24,7 +24,7 @@ const Gallery = () => {
         >
           <h2 className="heading-1">Gallery</h2>
           <p className="body-large">
-            A glimpse into the Bean Board experience
+            A glimpse into the Bean And Brew experience
           </p>
         </motion.div>
 
