@@ -239,7 +239,7 @@ export const testimonials = [
 export const aboutContent = {
   title: "Crafting Moments, One Cup at a Time",
   paragraphs: [
-    "Welcome to ITHI HA ASA Foods, where coffee isn't just a drink—it's an experience. Located in the heart of Visakhapatnam, we've created a space that celebrates quality, comfort, and community.",
+    "Welcome to ITI HA ASA Foods, where coffee isn't just a drink—it's an experience. Located in the heart of Visakhapatnam, we've created a space that celebrates quality, comfort, and community.",
     "Every bean is carefully selected, every brew meticulously crafted, and every moment designed to make you feel at home. Whether you're here for a quick espresso or a long conversation over lattes, we're here to make it memorable."
   ]
 };
