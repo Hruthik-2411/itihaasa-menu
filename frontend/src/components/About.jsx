@@ -17,7 +17,7 @@ const About = () => {
           >
             <img 
               src="https://itihaasafoods.in/assets/images/2.jpg"
-              alt="ITHI HA ASA Foods Interior"
+              alt="ITI HA ASA Foods Interior"
               className="about-img"
               loading="lazy"
               decoding="async"
