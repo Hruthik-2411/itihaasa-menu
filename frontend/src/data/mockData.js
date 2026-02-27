@@ -1,7 +1,7 @@
 // Mock data for ITHI HA ASA Foods Website
 
 export const cafeInfo = {
-  name: "ITHI HA ASA Foods",
+  name: "ITI HA ASA Foods",
   tagline: "Where Every Cup Tells a Story",
   rating: 4.3,
   reviews: 1123,
