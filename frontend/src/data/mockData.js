@@ -48,7 +48,7 @@ export const menuCategories = [
     items: [
              
              { name: "Americano", priceSmall: "₹130", priceLarge: "₹160", description: "Bold & robust" },
-             { name: "Cafe Latte", priceSmall: "₹120", priceLarge: "₹150", description: "Silky smooth milk & espresso" },
+             { name: "Cafe Latte", priceSmall: "₹150", priceLarge: "₹200", description: "Silky smooth milk & espresso" },
              { name: "Cappuccino", priceSmall: "₹150", priceLarge: "₹200", description: "Classic Italian perfection" },
              { name: "Cafe Mocha", priceSmall: "₹200", priceLarge: "₹230", description: "Chocolate meets coffee" },
              { name: "Caramel Macchiato", priceSmall: "₹200", priceLarge: "₹250", description: "Sweet caramel layers" },
