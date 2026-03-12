@@ -152,7 +152,7 @@ items: [
   { name: "Tandoori Sandwich", price: "₹180" },
   { name: "Chicken Tikka Sandwich", price: "₹190" },
   { name: "Fiery Chicken Sandwich", price: "₹190" },
-  { name: "Mexican Grill Sandwich", price: "₹220" },
+  { name: "Mexican Grill Sandwich", price: "₹200" },
   { name: "Grilled Chicken Sandwich", price: "₹200" },
   { name: "Egg Toast", price: "₹200" }
 ]
@@ -204,7 +204,7 @@ items: [
   { name: "Blueberry Cheese Cake", price: "₹160" },
   { name: "Blueberry Pastry", price: "₹160" },
   { name: "Brownie with Ice Cream", price: "₹180" },
-  { name: "Butter Cake", price: "₹110" },
+  { name: "Butter Pound Cake", price: "₹110" },
   { name: "Carrot Cake", price: "₹150" },
   { name: "Cheese Cake", price: "₹150" },
   { name: "Chocolate Crunch", price: "₹130" },
@@ -219,7 +219,9 @@ items: [
   { name: "Mocha Pastry", price: "₹150" },
   { name: "Red Velvet Cake", price: "₹150" },
   { name: "Rocky Road Pastry", price: "₹180" },
-  { name: "Tiramisu", price: "₹170" }
+  { name: "Tiramisu", price: "₹170" },
+  { name: "Chocoship Banana Cake", price: "₹110" },
+
 ]
   },
   {
