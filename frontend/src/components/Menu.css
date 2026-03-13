@@ -17,9 +17,7 @@
 /* Professional Tab Navigation */
 .menu-tabs {
   margin-bottom: 2rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 .menu-tabs::-webkit-scrollbar {
@@ -53,6 +51,7 @@
   white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.025em;
+  min-height: 48px;
 }
 
 .tab-button:hover {
@@ -182,12 +181,17 @@
   backface-visibility: hidden;
 }
 
-/* Responsive */
 @media (max-width: 968px) {
   .tabs-scroll {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .menu-items-compact {
